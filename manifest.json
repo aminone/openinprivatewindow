@@ -1,14 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "Open in Private Tab",
+  "name": "Open in Private Window",
   "version": "0.1.0",
   "description": "Reopen the current tab's URL in a new Private Browsing window from the tab context menu.",
   "author": "mahmudian.ir",
-  "homepage_url": "https://github.com/aminone/openinprivatetab",
+  "homepage_url": "https://github.com/aminone/openinprivatewindow",
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "openinprivatetab@mahmudian.ir",
+      "id": "openinprivatewindow@mahmudian.ir",
       "strict_min_version": "115.0"
     }
   },

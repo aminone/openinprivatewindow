@@ -1,8 +1,6 @@
-# Open in Private Tab
+# Open in Private Window
 
-A minimal Firefox extension (Manifest V3) that reopens the current tab's URL in a new Private Browsing **window**, via a right-click context menu item on the tab strip.
-
-> **Note on naming:** Private Browsing in Firefox is a *window*-level concept, not a tab-level one. This extension opens a new Private Browsing window with the same URL — it does not, and cannot, convert a single tab into a "private tab" inside the current window. This is stated explicitly here (and will be stated on the AMO listing) to avoid any misleading impression of the extension's behavior.
+A minimal Firefox extension (Manifest V3) that reopens the current tab's URL in a new Private Browsing window, via a right-click context menu item on the tab strip.
 
 ## Status
 
@@ -25,7 +23,7 @@ as a manifest permission. Without it, clicking the context menu item fails with:
 Error: Extension does not have permission for incognito mode
 ```
 
-To fix it: go to `about:addons` → Extensions → Open in Private Tab → set
+To fix it: go to `about:addons` → Extensions → Open in Private Window → set
 **"Run in Private Windows"** to **Allow**.
 
 The welcome page includes a "Copy" button for the `about:addons` address, since

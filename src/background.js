@@ -1,5 +1,5 @@
 /**
- * OpenInPrivateTab - Background script (Phase 1 / MVP)
+ * OpenInPrivateWindow - Background script (Phase 1 / MVP)
  *
  * Responsibility:
  * - Register a context menu item on the tab strip.
@@ -61,8 +61,8 @@ async function handleOpenWindowError(error) {
 
   if (!isAllowed) {
     console.warn(
-      "OpenInPrivateTab: this extension does not have private window access yet. " +
-      "Enable it via about:addons -> OpenInPrivateTab -> Run in Private Windows."
+      "OpenInPrivateWindow: this extension does not have private window access yet. " +
+      "Enable it via about:addons -> OpenInPrivateWindow -> Run in Private Windows."
     );
     browser.tabs.create({
       url: browser.runtime.getURL("src/welcome.html")
@@ -70,5 +70,5 @@ async function handleOpenWindowError(error) {
     return;
   }
 
-  console.error("OpenInPrivateTab: failed to open private window", error);
+  console.error("OpenInPrivateWindow: failed to open private window", error);
 }

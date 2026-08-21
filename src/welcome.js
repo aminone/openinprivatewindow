@@ -1,5 +1,5 @@
 /**
- * OpenInPrivateTab - welcome.html script
+ * OpenInPrivateWindow - welcome.html script
  *
  * "about:addons" is a privileged page and cannot be opened programmatically
  * from an extension (tabs.create/tabs.update reject it, and a plain <a href>
@@ -17,7 +17,7 @@ copyButton.addEventListener("click", async () => {
     feedback.textContent = "Copied!";
   } catch (error) {
     feedback.textContent = "Could not copy - please select and copy manually.";
-    console.error("OpenInPrivateTab: clipboard write failed", error);
+    console.error("OpenInPrivateWindow: clipboard write failed", error);
   }
 
   setTimeout(() => {
