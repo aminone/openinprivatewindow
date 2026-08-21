@@ -57,6 +57,24 @@
       background: #f3e9fb;
       font-size: 0.95em;
     }
+    #copy-btn {
+      margin-left: 8px;
+      padding: 4px 12px;
+      border: 1px solid #6200a4;
+      border-radius: 4px;
+      background: #fff;
+      color: #6200a4;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    #copy-btn:hover {
+      background: #f3e9fb;
+    }
+    #copy-feedback {
+      margin-left: 8px;
+      font-size: 0.85em;
+      color: #2e8b40;
+    }
   </style>
 </head>
 <body>
@@ -70,7 +88,17 @@
     <div class="step-number">1</div>
     <div class="step-body">
       <h2>Open the extension's settings</h2>
-      <p>Go to <code>about:addons</code>, click "Extensions", then click on "Open in Private Tab".</p>
+      <p>
+        Firefox does not allow extension pages to link directly to
+        <code>about:addons</code> — it's a privileged page. Copy the address
+        below and paste it into the address bar, then press Enter.
+      </p>
+      <p>
+        <code id="addons-url">about:addons</code>
+        <button id="copy-btn" type="button">Copy</button>
+        <span id="copy-feedback" aria-live="polite"></span>
+      </p>
+      <p>Then click "Extensions" in the left sidebar, and click on "Open in Private Tab".</p>
     </div>
   </div>
 
@@ -95,5 +123,7 @@
     address — Firefox does not support private "tabs" inside a normal window.
     Your original tab stays open and unaffected.
   </div>
+
+  <script src="welcome.js"></script>
 </body>
 </html>

@@ -12,6 +12,31 @@ Phase 1 (MVP) — in development.
 
 - Right-click a tab → "Open in Private Window" → opens that tab's URL in a new private window.
 - No settings yet. Original tab is never closed. URL is opened exactly as-is (no cleaning).
+- On install, a welcome page opens explaining the one-time "Run in Private Windows" permission (see below).
+
+## Required manual step: "Run in Private Windows"
+
+Firefox does not allow any extension to create a private window unless the user
+explicitly grants it access, regardless of what's declared in `manifest.json`.
+This is a per-extension, user-controlled toggle — not something we can request
+as a manifest permission. Without it, clicking the context menu item fails with:
+
+```
+Error: Extension does not have permission for incognito mode
+```
+
+To fix it: go to `about:addons` → Extensions → Open in Private Tab → set
+**"Run in Private Windows"** to **Allow**.
+
+The welcome page includes a "Copy" button for the `about:addons` address, since
+Firefox does not allow extension pages to link to it directly — it's a
+privileged page and rejects programmatic navigation the same way `tabs.create()`
+does (see [Bug 1269456](https://bugzilla.mozilla.org/show_bug.cgi?id=1269456)).
+
+The background script detects this failure via `extension.isAllowedIncognitoAccess()`
+and reopens the welcome page with instructions instead of failing silently.
+
+Reference: [MDN — incognito](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/incognito), [Bug 1618439](https://bugzilla.mozilla.org/show_bug.cgi?id=1618439)
 
 ## Roadmap
 
