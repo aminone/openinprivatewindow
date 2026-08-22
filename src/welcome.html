@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Open in Private Window — Setup</title>
+  <title></title>
   <style>
     :root {
       color-scheme: light dark;
@@ -108,46 +108,39 @@
   </style>
 </head>
 <body>
-  <h1>One quick step before you start</h1>
-  <p>
-    Firefox blocks every extension from creating private windows by default.
-    You need to allow it once for OpenInPrivateWindow.
-  </p>
+  <h1 id="welcome-heading"></h1>
+  <p id="welcome-intro"></p>
 
   <div class="step">
     <div class="step-number">1</div>
     <div class="step-body">
-      <h2>Open the extension's settings</h2>
+      <h2 id="step1-title"></h2>
       <p>
-        Go to <code id="addons-url">about:addons</code>
-        <button id="copy-btn" type="button">Copy</button>
+        <span id="step1-goto"></span> <code id="addons-url">about:addons</code>
+        <button id="copy-btn" type="button"></button>
         <span id="copy-feedback" aria-live="polite"></span>
       </p>
-      <p>Click "Extensions" in the left sidebar, then click on "Open in Private Window".</p>
+      <p id="step1-instructions"></p>
     </div>
   </div>
 
   <div class="step">
     <div class="step-number">2</div>
     <div class="step-body">
-      <h2>Allow private browsing access</h2>
-      <p>Find "Run in Private Windows" and set it to <strong>Allow</strong>.</p>
+      <h2 id="step2-title"></h2>
+      <p id="step2-body"></p>
     </div>
   </div>
 
   <div class="step">
     <div class="step-number">3</div>
     <div class="step-body">
-      <h2>You're done</h2>
-      <p>Right-click any tab and choose "Open in Private Window".</p>
+      <h2 id="step3-title"></h2>
+      <p id="step3-body"></p>
     </div>
   </div>
 
-  <div class="note">
-    Note: "Open in Private Window" opens a new private <em>window</em> with the same
-    address — Firefox does not support private "tabs" inside a normal window.
-    Your original tab stays open and unaffected.
-  </div>
+  <div class="note" id="welcome-note"></div>
 
   <script src="welcome.js"></script>
 </body>

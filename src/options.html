@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Open in Private Window — Settings</title>
+  <title></title>
   <style>
     :root {
       color-scheme: light dark;
@@ -70,21 +70,21 @@
   </style>
 </head>
 <body>
-  <h1>Open in Private Window — Settings</h1>
+  <h1 id="options-heading"></h1>
 
   <label class="setting" for="close-original-tab">
     <input type="checkbox" id="close-original-tab">
     <span class="setting-body">
-      <h2>Close the original tab</h2>
-      <p>After opening the private window, close the tab you right-clicked on. Off by default.</p>
+      <h2 id="close-tab-title"></h2>
+      <p id="close-tab-body"></p>
     </span>
   </label>
 
   <label class="setting" for="clean-tracking-params">
     <input type="checkbox" id="clean-tracking-params">
     <span class="setting-body">
-      <h2>Remove tracking parameters before opening</h2>
-      <p>Strip known tracking query parameters (utm_*, fbclid, gclid, and similar) from the URL before opening it. Off by default.</p>
+      <h2 id="clean-params-title"></h2>
+      <p id="clean-params-body"></p>
     </span>
   </label>
 
