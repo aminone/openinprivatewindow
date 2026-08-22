@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Open in Private Window",
+  "name": "__MSG_extensionName__",
   "version": "0.1.0",
-  "description": "Reopen the current tab's URL in a new Private Browsing window from the tab context menu.",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en",
   "author": "mahmudian.ir",
   "homepage_url": "https://github.com/aminone/openinprivatewindow",
 
@@ -30,6 +31,7 @@
 
   "icons": {
     "48": "icons/icon-48.png",
-    "96": "icons/icon-96.png"
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
   }
 }

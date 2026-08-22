@@ -4,7 +4,7 @@ A minimal Firefox extension (Manifest V3) that reopens the current tab's URL in 
 
 ## Status
 
-Phase 2 — in progress (options page, storage, tracking-parameter list done; localization pending).
+Phase 2 — done (options page, storage, tracking-parameter list, localization). Icons and store-listing text are drafted, ready for AMO submission.
 
 ## Current features
 
@@ -14,6 +14,7 @@ Phase 2 — in progress (options page, storage, tracking-parameter list done; lo
   - **Remove tracking parameters before opening** — off by default. Strips a base list of known tracking query parameters (see `src/trackingParams.js`).
 - Settings are stored with `storage.local` (device-local, not synced — see reasoning below).
 - On install, a welcome page opens explaining the one-time "Run in Private Windows" permission (see below).
+- Available in English and Persian (`_locales/en`, `_locales/fa`) — extension name/description, context menu item, and both extension pages (welcome, options) are fully localized, including RTL layout for Persian.
 
 ## Why storage.local instead of storage.sync
 
@@ -49,17 +50,39 @@ and reopens the welcome page with instructions instead of failing silently.
 
 Reference: [MDN — incognito](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/incognito), [Bug 1618439](https://bugzilla.mozilla.org/show_bug.cgi?id=1618439)
 
+## Localization
+
+Locale files live in `_locales/<lang>/messages.json` (`en` is the
+`default_locale`). Covered strings: `manifest.json` name/description, the
+context menu item, and every string on the welcome and options pages.
+
+The welcome and options pages are plain HTML — WebExtensions does not
+auto-substitute `__MSG_x__` placeholders inside HTML files (only inside
+`manifest.json` and CSS). So `welcome.js`/`options.js` fill in text via
+`browser.i18n.getMessage()` on load, and set `<html lang>`/`dir` based on
+`browser.i18n.getUILanguage()` — `dir="rtl"` for Persian.
+
+To test a locale without changing your OS language, change Firefox's
+language in Settings → General → Language, or set `intl.locale.requested`
+in `about:config`.
+
 ## Roadmap
 
 | Phase | Scope |
 |-------|-------|
 | 1 | Context menu item, open URL in private window |
-| 2 (in progress) | Options page, storage.local settings, base tracking-parameter list, localization (en/fa) |
+| 2 | Options page, storage.local settings, base tracking-parameter list, localization (en/fa) |
 | 3 | Toolbar icon, expanded tracking-parameter list, keyboard shortcut |
 | 4 | Chrome compatibility (requires explicit review before starting) |
 
-Within Phase 2: options page, settings storage, and the base tracking-parameter
-list are done. Localization (en/fa) is still pending.
+Phase 2 is complete.
+
+## Publishing checklist (before AMO submission)
+
+- [x] Final icons (`icons/icon-48.png`, `icons/icon-96.png`, `icons/icon-128.png`, source in `icons/icon.svg`)
+- [x] Store listing draft copy (`store-listing/en.md`, `store-listing/fa.md`)
+- [ ] Bump `version` in `manifest.json` if needed before submitting
+- [ ] Final manual test pass (both locales, light/dark)
 
 ## Permissions
 
