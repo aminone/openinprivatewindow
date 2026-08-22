@@ -1,22 +1,36 @@
 /**
- * OpenInPrivateWindow - Background script (Phase 1 / MVP)
+ * OpenInPrivateWindow - Background script (Phase 2)
  *
  * Responsibility:
  * - Register a context menu item on the tab strip.
- * - When clicked, open the current tab's URL in a new Private Browsing window.
+ * - When clicked, read user settings from storage.local, optionally clean
+ *   known tracking query parameters from the URL, open it in a new Private
+ *   Browsing window, and optionally close the original tab.
  * - On first install, open a welcome page that explains the required
  *   one-time "Run in Private Windows" permission (this is a Firefox
  *   user-controlled setting, it cannot be requested via manifest.json).
  *
  * Reference: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/menus
  * Reference: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/create
+ * Reference: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/storage
  * Reference: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/extension/isAllowedIncognitoAccess
  *
  * Note: Menu items must be created inside runtime.onInstalled, otherwise
  * repeated reloads during development throw "duplicate id" errors.
+ *
+ * Note: TRACKING_PARAMS comes from trackingParams.js, loaded before this
+ * file in manifest.json's background.scripts array (classic script
+ * concatenation, shared global scope - no import/export needed).
  */
 
 const MENU_ITEM_ID = "open-in-private-window";
+
+// Defaults must match the ones read on options.html, and the decisions
+// made in phase 1/2 planning: original tab stays open, URL is untouched.
+const DEFAULT_SETTINGS = {
+  closeOriginalTab: false,
+  cleanTrackingParams: false
+};
 
 browser.runtime.onInstalled.addListener((details) => {
   browser.contextMenus.create({
@@ -32,7 +46,7 @@ browser.runtime.onInstalled.addListener((details) => {
   }
 });
 
-browser.contextMenus.onClicked.addListener((info, tab) => {
+browser.contextMenus.onClicked.addListener(async (info, tab) => {
   if (info.menuItemId !== MENU_ITEM_ID) {
     return;
   }
@@ -41,13 +55,48 @@ browser.contextMenus.onClicked.addListener((info, tab) => {
     return;
   }
 
-  browser.windows.create({
-    url: tab.url,
-    incognito: true
-  }).catch((error) => {
+  const settings = await browser.storage.local.get(DEFAULT_SETTINGS);
+  const targetUrl = settings.cleanTrackingParams
+    ? removeTrackingParams(tab.url)
+    : tab.url;
+
+  try {
+    await browser.windows.create({
+      url: targetUrl,
+      incognito: true
+    });
+
+    // Only close the original tab after the private window was created
+    // successfully - never close it on a failed attempt (e.g. missing
+    // "Run in Private Windows" permission, handled below).
+    if (settings.closeOriginalTab) {
+      await browser.tabs.remove(tab.id);
+    }
+  } catch (error) {
     handleOpenWindowError(error);
-  });
+  }
 });
+
+/**
+ * Removes known tracking query parameters (see trackingParams.js) from a
+ * URL. Falls back to the original URL untouched if it can't be parsed.
+ */
+function removeTrackingParams(rawUrl) {
+  let url;
+
+  try {
+    url = new URL(rawUrl);
+  } catch (error) {
+    console.warn("OpenInPrivateWindow: could not parse URL, skipping cleanup", error);
+    return rawUrl;
+  }
+
+  for (const param of TRACKING_PARAMS) {
+    url.searchParams.delete(param);
+  }
+
+  return url.toString();
+}
 
 /**
  * Firefox blocks an extension from creating a private window until the
