@@ -1,0 +1,96 @@
+{
+  "extensionName": {
+    "message": "باز کردن در پنجره خصوصی",
+    "description": "Extension name shown in about:addons and the AMO listing."
+  },
+  "extensionDescription": {
+    "message": "آدرس تب جاری را از طریق منوی راست‌کلیک تب، در یک پنجره جدید Private Browsing باز می‌کند.",
+    "description": "Extension description shown in about:addons and the AMO listing."
+  },
+  "contextMenuItemTitle": {
+    "message": "باز کردن در پنجره خصوصی",
+    "description": "Label of the tab context menu item."
+  },
+
+  "welcomePageTitle": {
+    "message": "باز کردن در پنجره خصوصی — راه‌اندازی",
+    "description": "<title> of the welcome page."
+  },
+  "welcomeHeading": {
+    "message": "یک قدم کوچک قبل از شروع",
+    "description": "Main heading on the welcome page."
+  },
+  "welcomeIntro": {
+    "message": "فایرفاکس به‌صورت پیش‌فرض اجازه نمی‌دهد هیچ افزونه‌ای پنجره خصوصی باز کند. باید یک‌بار این اجازه را برای «باز کردن در پنجره خصوصی» فعال کنی.",
+    "description": "Intro paragraph on the welcome page."
+  },
+  "welcomeStep1Title": {
+    "message": "تنظیمات افزونه را باز کن",
+    "description": "Title of step 1 on the welcome page."
+  },
+  "welcomeStep1GoTo": {
+    "message": "برو به",
+    "description": "Text before the about:addons address and Copy button on the welcome page."
+  },
+  "welcomeCopyButton": {
+    "message": "کپی",
+    "description": "Label of the button that copies 'about:addons' to the clipboard."
+  },
+  "welcomeCopyFeedbackSuccess": {
+    "message": "کپی شد!",
+    "description": "Feedback shown after successfully copying the address."
+  },
+  "welcomeCopyFeedbackError": {
+    "message": "کپی انجام نشد — لطفا متن را دستی انتخاب و کپی کن.",
+    "description": "Feedback shown if the clipboard write fails."
+  },
+  "welcomeStep1Instructions": {
+    "message": "از منوی سمت چپ روی «Extensions» کلیک کن، بعد روی «باز کردن در پنجره خصوصی» بزن.",
+    "description": "Second paragraph of step 1 on the welcome page."
+  },
+  "welcomeStep2Title": {
+    "message": "دسترسی به حالت خصوصی را فعال کن",
+    "description": "Title of step 2 on the welcome page."
+  },
+  "welcomeStep2Body": {
+    "message": "گزینه «Run in Private Windows» را پیدا کن و روی Allow بذار.",
+    "description": "Body of step 2 on the welcome page."
+  },
+  "welcomeStep3Title": {
+    "message": "تمام شد",
+    "description": "Title of step 3 on the welcome page."
+  },
+  "welcomeStep3Body": {
+    "message": "روی هر تبی کلیک راست کن و «باز کردن در پنجره خصوصی» را انتخاب کن.",
+    "description": "Body of step 3 on the welcome page."
+  },
+  "welcomeNote": {
+    "message": "«باز کردن در پنجره خصوصی» یک پنجره خصوصی جدید با همان آدرس باز می‌کند، فایرفاکس از تب خصوصی داخل یک پنجره عادی پشتیبانی نمی‌کند. تب اصلی همچنان باز و دست‌نخورده باقی می‌ماند.",
+    "description": "Closing note on the welcome page."
+  },
+
+  "optionsPageTitle": {
+    "message": "باز کردن در پنجره خصوصی — تنظیمات",
+    "description": "<title> and main heading of the options page."
+  },
+  "optionsCloseTabTitle": {
+    "message": "بستن تب اصلی",
+    "description": "Title of the 'close original tab' setting."
+  },
+  "optionsCloseTabBody": {
+    "message": "بعد از باز شدن پنجره خصوصی، تبی که روش کلیک راست کردی بسته بشه. پیش‌فرض خاموش.",
+    "description": "Description of the 'close original tab' setting."
+  },
+  "optionsCleanParamsTitle": {
+    "message": "حذف پارامترهای ردیابی قبل از باز شدن",
+    "description": "Title of the 'clean tracking parameters' setting."
+  },
+  "optionsCleanParamsBody": {
+    "message": "پارامترهای شناخته‌شده ردیابی (مثل utm_*، fbclid، gclid) رو قبل باز شدن از آدرس حذف کن. پیش‌فرض خاموش.",
+    "description": "Description of the 'clean tracking parameters' setting."
+  },
+  "optionsSavedIndicator": {
+    "message": "ذخیره شد",
+    "description": "Brief confirmation shown after a setting is changed."
+  }
+}

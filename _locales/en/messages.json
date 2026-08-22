@@ -1,0 +1,96 @@
+{
+  "extensionName": {
+    "message": "Open in Private Window",
+    "description": "Extension name shown in about:addons and the AMO listing."
+  },
+  "extensionDescription": {
+    "message": "Reopen the current tab's URL in a new Private Browsing window from the tab context menu.",
+    "description": "Extension description shown in about:addons and the AMO listing."
+  },
+  "contextMenuItemTitle": {
+    "message": "Open in Private Window",
+    "description": "Label of the tab context menu item."
+  },
+
+  "welcomePageTitle": {
+    "message": "Open in Private Window — Setup",
+    "description": "<title> of the welcome page."
+  },
+  "welcomeHeading": {
+    "message": "One quick step before you start",
+    "description": "Main heading on the welcome page."
+  },
+  "welcomeIntro": {
+    "message": "Firefox blocks every extension from creating private windows by default. You need to allow it once for Open in Private Window.",
+    "description": "Intro paragraph on the welcome page."
+  },
+  "welcomeStep1Title": {
+    "message": "Open the extension's settings",
+    "description": "Title of step 1 on the welcome page."
+  },
+  "welcomeStep1GoTo": {
+    "message": "Go to",
+    "description": "Text before the about:addons address and Copy button on the welcome page."
+  },
+  "welcomeCopyButton": {
+    "message": "Copy",
+    "description": "Label of the button that copies 'about:addons' to the clipboard."
+  },
+  "welcomeCopyFeedbackSuccess": {
+    "message": "Copied!",
+    "description": "Feedback shown after successfully copying the address."
+  },
+  "welcomeCopyFeedbackError": {
+    "message": "Could not copy - please select and copy manually.",
+    "description": "Feedback shown if the clipboard write fails."
+  },
+  "welcomeStep1Instructions": {
+    "message": "Click \"Extensions\" in the left sidebar, then click on \"Open in Private Window\".",
+    "description": "Second paragraph of step 1 on the welcome page."
+  },
+  "welcomeStep2Title": {
+    "message": "Allow private browsing access",
+    "description": "Title of step 2 on the welcome page."
+  },
+  "welcomeStep2Body": {
+    "message": "Find \"Run in Private Windows\" and set it to Allow.",
+    "description": "Body of step 2 on the welcome page."
+  },
+  "welcomeStep3Title": {
+    "message": "You're done",
+    "description": "Title of step 3 on the welcome page."
+  },
+  "welcomeStep3Body": {
+    "message": "Right-click any tab and choose \"Open in Private Window\".",
+    "description": "Body of step 3 on the welcome page."
+  },
+  "welcomeNote": {
+    "message": "\"Open in Private Window\" opens a new private window with the same address — Firefox does not support private \"tabs\" inside a normal window. Your original tab stays open and unaffected.",
+    "description": "Closing note on the welcome page."
+  },
+
+  "optionsPageTitle": {
+    "message": "Open in Private Window — Settings",
+    "description": "<title> and main heading of the options page."
+  },
+  "optionsCloseTabTitle": {
+    "message": "Close the original tab",
+    "description": "Title of the 'close original tab' setting."
+  },
+  "optionsCloseTabBody": {
+    "message": "After opening the private window, close the tab you right-clicked on. Off by default.",
+    "description": "Description of the 'close original tab' setting."
+  },
+  "optionsCleanParamsTitle": {
+    "message": "Remove tracking parameters before opening",
+    "description": "Title of the 'clean tracking parameters' setting."
+  },
+  "optionsCleanParamsBody": {
+    "message": "Strip known tracking query parameters (utm_*, fbclid, gclid, and similar) from the URL before opening it. Off by default.",
+    "description": "Description of the 'clean tracking parameters' setting."
+  },
+  "optionsSavedIndicator": {
+    "message": "Saved",
+    "description": "Brief confirmation shown after a setting is changed."
+  }
+}
