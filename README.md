@@ -4,17 +4,17 @@ A minimal Firefox extension (Manifest V3) that reopens the current tab's URL in 
 
 ## Status
 
-Phase 2 — done (options page, storage, tracking-parameter list, localization). Icons and store-listing text are drafted, ready for AMO submission.
+Phase 3 — done (toolbar icon, keyboard shortcut, expanded tracking-parameter list).
 
 ## Current features
 
-- Right-click a tab → "Open in Private Window" → opens that tab's URL in a new private window.
+- Right-click a tab, click the toolbar icon, or press **Alt+Shift+P** → opens that tab's URL in a new private window. All three triggers share the same logic.
 - Full options page (`about:addons` → Extensions → Open in Private Window → Preferences, or `src/options.html`):
   - **Close the original tab** — off by default.
-  - **Remove tracking parameters before opening** — off by default. Strips a base list of known tracking query parameters (see `src/trackingParams.js`).
+  - **Remove tracking parameters before opening** — off by default. Strips a curated list of ~110 known tracking query parameters (see `src/trackingParams.js`).
 - Settings are stored with `storage.local` (device-local, not synced — see reasoning below).
 - On install, a welcome page opens explaining the one-time "Run in Private Windows" permission (see below).
-- Available in English and Persian (`_locales/en`, `_locales/fa`) — extension name/description, context menu item, and both extension pages (welcome, options) are fully localized, including RTL layout for Persian.
+- Available in English and Persian (`_locales/en`, `_locales/fa`) — extension name/description, context menu item, keyboard shortcut description, and both extension pages (welcome, options) are fully localized, including RTL layout for Persian.
 
 ## Why storage.local instead of storage.sync
 
@@ -66,6 +66,17 @@ To test a locale without changing your OS language, change Firefox's
 language in Settings → General → Language, or set `intl.locale.requested`
 in `about:config`.
 
+## Keyboard shortcut
+
+Default is **Alt+Shift+P** (`commands` in manifest.json). Ctrl+Shift+P was
+the obvious first choice given the "P" requirement, but Firefox reserves it
+for its own "Open a New Private Window" command — ironic collision, but it
+means extensions can't register it at all (the browser silently won't call
+the handler). Alt+Shift+P isn't reserved by Firefox and follows the
+modifier+Shift+letter pattern Mozilla recommends for extension shortcuts.
+Users can remap it anytime via `about:addons` → gear icon → Manage Extension
+Shortcuts.
+
 ## Roadmap
 
 | Phase | Scope |
@@ -75,7 +86,7 @@ in `about:config`.
 | 3 | Toolbar icon, expanded tracking-parameter list, keyboard shortcut |
 | 4 | Chrome compatibility (requires explicit review before starting) |
 
-Phase 2 is complete.
+Phases 1-3 are complete.
 
 ## Publishing checklist (before AMO submission)
 
