@@ -1,0 +1,71 @@
+name: Release to AMO
+
+# Runs only when a version tag is pushed (e.g. v1.0.0) - a deliberate,
+# manual decision, unlike build.yml which runs on every push to main.
+# Lints, builds the same clean zip, submits it to addons.mozilla.org
+# for signing/review via web-ext sign, and attaches the zip to a
+# GitHub Release for the tag.
+#
+# Requires two repo secrets, generated from your AMO API Credentials
+# page (https://addons.mozilla.org/developers/addon/api/key/):
+#   AMO_API_KEY    - looks like "user:12345:678"
+#   AMO_API_SECRET
+#
+# Note: this assumes the extension already exists as a listed add-on
+# on AMO (i.e. the first version, 1.0.0, was submitted manually
+# through the web UI). web-ext sign --channel=listed here submits
+# subsequent version updates, not the initial listing.
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install web-ext
+        run: npm install --global web-ext
+
+      - name: Lint extension
+        run: web-ext lint --source-dir=.
+
+      - name: Build extension zip
+        run: >
+          web-ext build --source-dir=. --artifacts-dir=web-ext-artifacts --overwrite-dest
+          --ignore-files=README.md
+          --ignore-files=LICENSE
+          --ignore-files=".gitignore"
+          --ignore-files="store-listing/**"
+          --ignore-files="icons/icon.svg"
+          --ignore-files=".github/**"
+
+      # Submits the build to AMO for signing. For a listed extension this
+      # still goes through Mozilla's normal human review before the new
+      # version becomes public - this step only starts that process, it
+      # does not bypass review.
+      - name: Submit to AMO
+        run: >
+          web-ext sign --source-dir=. --artifacts-dir=web-ext-artifacts
+          --api-key=${{ secrets.AMO_API_KEY }}
+          --api-secret=${{ secrets.AMO_API_SECRET }}
+          --channel=listed
+          --ignore-files=README.md
+          --ignore-files=LICENSE
+          --ignore-files=".gitignore"
+          --ignore-files="store-listing/**"
+          --ignore-files="icons/icon.svg"
+          --ignore-files=".github/**"
+
+      - name: Attach zip to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: web-ext-artifacts/*.zip

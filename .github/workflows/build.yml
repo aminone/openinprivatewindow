@@ -1,0 +1,42 @@
+name: Build
+
+# Runs on every push to main - lints the extension and produces a fresh
+# .zip artifact, but never submits anything to AMO. That only happens in
+# release.yml, triggered by pushing a version tag.
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install web-ext
+        run: npm install --global web-ext
+
+      - name: Lint extension
+        run: web-ext lint --source-dir=.
+
+      - name: Build extension zip
+        run: >
+          web-ext build --source-dir=. --artifacts-dir=web-ext-artifacts --overwrite-dest
+          --ignore-files=README.md
+          --ignore-files=LICENSE
+          --ignore-files=".gitignore"
+          --ignore-files="store-listing/**"
+          --ignore-files="icons/icon.svg"
+          --ignore-files=".github/**"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension-build
+          path: web-ext-artifacts/*.zip

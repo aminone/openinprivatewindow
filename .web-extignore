@@ -1,0 +1,11 @@
+# Files web-ext should leave out of the packaged extension.
+# .git/, node_modules/, and a few OS files are excluded by web-ext itself
+# by default - this file only needs the extras specific to this repo.
+
+README.md
+LICENSE
+.gitignore
+.web-extignore
+store-listing/
+icons/icon.svg
+.github/

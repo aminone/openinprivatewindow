@@ -94,6 +94,29 @@ Phase 2 is complete.
 
 No host permissions are requested.
 
+## CI/CD
+
+Two GitHub Actions workflows live in `.github/workflows/`:
+
+- **`build.yml`** — runs on every push to `main`. Lints the extension
+  (`web-ext lint`), builds a clean `.zip` with `web-ext build` (excluding
+  README, LICENSE, `store-listing/`, `icons/icon.svg`, and `.github/`), and
+  uploads it as a downloadable build artifact. Never touches AMO.
+- **`release.yml`** — runs only when a version tag matching `v*.*.*` is
+  pushed. Builds the same clean zip, submits it to AMO via `web-ext sign
+  --channel=listed`, and attaches the zip to a GitHub Release.
+
+Submission only happens on an explicit tag push, not on every merge to
+`main` — a routine README fix shouldn't queue a new version for Mozilla's
+review. To ship a new version: bump `version` in `manifest.json`, merge to
+`main`, then `git tag vX.Y.Z && git push origin vX.Y.Z`.
+
+`release.yml` needs two repository secrets from your
+[AMO API Credentials page](https://addons.mozilla.org/developers/addon/api/key/):
+`AMO_API_KEY` and `AMO_API_SECRET`. It assumes the extension is already
+listed on AMO (the 1.0.0 submission was done manually through the web UI) —
+it submits version updates, not the initial listing.
+
 ## Development
 
 Load temporarily in Firefox via `about:debugging` → "This Firefox" → "Load Temporary Add-on…" → select `manifest.json`.
