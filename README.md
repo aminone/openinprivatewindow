@@ -4,13 +4,26 @@ A minimal Firefox extension (Manifest V3) that reopens the current tab's URL in 
 
 ## Status
 
-Phase 1 (MVP) — in development.
+Phase 2 — in progress (options page, storage, tracking-parameter list done; localization pending).
 
-## Current features (Phase 1)
+## Current features
 
 - Right-click a tab → "Open in Private Window" → opens that tab's URL in a new private window.
-- No settings yet. Original tab is never closed. URL is opened exactly as-is (no cleaning).
+- Full options page (`about:addons` → Extensions → Open in Private Window → Preferences, or `src/options.html`):
+  - **Close the original tab** — off by default.
+  - **Remove tracking parameters before opening** — off by default. Strips a base list of known tracking query parameters (see `src/trackingParams.js`).
+- Settings are stored with `storage.local` (device-local, not synced — see reasoning below).
 - On install, a welcome page opens explaining the one-time "Run in Private Windows" permission (see below).
+
+## Why storage.local instead of storage.sync
+
+Per MDN, `storage.sync` is meant for settings that should follow the user across
+devices/profiles, while `storage.local` is for settings local to the current
+machine. This extension's settings are small, purely local preferences with no
+reason to sync, and `storage.sync` would additionally require a
+`browser_specific_settings.gecko.id` — which we already set for other reasons,
+but avoiding a sync dependency keeps behavior predictable regardless of whether
+the user has Firefox Sync enabled.
 
 ## Required manual step: "Run in Private Windows"
 
@@ -40,19 +53,23 @@ Reference: [MDN — incognito](https://developer.mozilla.org/en-US/docs/Mozilla/
 
 | Phase | Scope |
 |-------|-------|
-| 1 (current) | Context menu item, open URL in private window |
-| 2 | Options page (close original tab toggle, URL cleaning toggle), storage.local settings, base tracking-parameter list, localization (en/fa) |
+| 1 | Context menu item, open URL in private window |
+| 2 (in progress) | Options page, storage.local settings, base tracking-parameter list, localization (en/fa) |
 | 3 | Toolbar icon, expanded tracking-parameter list, keyboard shortcut |
 | 4 | Chrome compatibility (requires explicit review before starting) |
 
-## Permissions (Phase 1)
+Within Phase 2: options page, settings storage, and the base tracking-parameter
+list are done. Localization (en/fa) is still pending.
+
+## Permissions
 
 | Permission | Reason |
 |------------|--------|
 | `contextMenus` | To add the "Open in Private Window" item to the tab context menu |
-| `tabs` | To read the URL of the clicked tab |
+| `tabs` | To read the URL of the clicked tab, and close it when the "close original tab" setting is on |
+| `storage` | To persist the two options-page settings |
 
-No host permissions and no `storage` permission are requested in Phase 1.
+No host permissions are requested.
 
 ## Development
 
