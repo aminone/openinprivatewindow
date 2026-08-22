@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7b2ff7"/>
+      <stop offset="100%" stop-color="#4a00a0"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#bg)"/>
+
+  <!-- minimal mask/glasses glyph, symbolizing private browsing -->
+  <g fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- brow -->
+    <path d="M34 50 Q64 34 94 50" />
+    <!-- left lens -->
+    <circle cx="46" cy="66" r="16" />
+    <!-- right lens -->
+    <circle cx="82" cy="66" r="16" />
+    <!-- bridge -->
+    <path d="M62 64 h4" />
+  </g>
+</svg>
