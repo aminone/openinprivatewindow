@@ -74,12 +74,22 @@
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 12px 28px;
       border-radius: 8px;
       font-weight: 600;
       text-decoration: none;
       font-size: 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
     .btn-primary {
@@ -93,7 +103,6 @@
 
     .btn-secondary {
       color: var(--accent);
-      margin-left: 12px;
     }
 
     main {
@@ -162,9 +171,10 @@
     <img src="assets/icon-128.png" alt="Open in Private Window icon">
     <h1>Open in Private Window</h1>
     <p>A small Firefox extension that reopens your current tab in a new Private Browsing window.</p>
-    <!-- TODO: replace with the live AMO listing URL once the review is approved -->
-    <a class="btn btn-primary" href="https://addons.mozilla.org">Get it on AMO (pending review)</a>
-    <a class="btn btn-secondary" href="https://github.com/aminone/openinprivatewindow">View on GitHub</a>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://addons.mozilla.org/en-US/firefox/addon/open-in-private/">Get it for Firefox</a>
+      <a class="btn btn-secondary" href="https://github.com/aminone/openinprivatewindow">View on GitHub</a>
+    </div>
   </div>
 
   <main>
