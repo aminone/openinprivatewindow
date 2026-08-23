@@ -61,12 +61,47 @@
     "description": "Title of step 3 on the welcome page."
   },
   "welcomeStep3Body": {
-    "message": "Right-click any tab and choose \"Open in Private Window\".",
+    "message": "Right-click any tab, click the toolbar icon, or press Alt+Shift+P.",
     "description": "Body of step 3 on the welcome page."
   },
   "welcomeNote": {
     "message": "\"Open in Private Window\" opens a new private window with the same address — Firefox does not support private \"tabs\" inside a normal window. Your original tab stays open and unaffected.",
     "description": "Closing note on the welcome page."
+  },
+
+  "aboutHeading": {
+    "message": "About this extension",
+    "description": "Heading of the 'about' section on the welcome page."
+  },
+  "aboutBody": {
+    "message": "Open in Private Window is a small, focused Firefox extension: it reopens the current tab's address in a new Private Browsing window, with optional tracking-parameter cleanup and an option to close the original tab. It makes no network requests and collects no data - all settings stay on your device.",
+    "description": "Body of the 'about' section on the welcome page."
+  },
+
+  "authorHeading": {
+    "message": "Author",
+    "description": "Heading of the author section on the welcome page."
+  },
+  "authorBody": {
+    "message": "Built and maintained by Amin.",
+    "description": "Body of the author section on the welcome page."
+  },
+  "authorRepoLink": {
+    "message": "GitHub repository",
+    "description": "Link text pointing to the project's GitHub repository."
+  },
+
+  "creditsHeading": {
+    "message": "Credits",
+    "description": "Heading of the credits section on the welcome page."
+  },
+  "creditsBody": {
+    "message": "The tracking-parameter list is curated from an open-source registry:",
+    "description": "Body of the credits section on the welcome page."
+  },
+  "creditsLink": {
+    "message": "mpchadwick/tracking-query-params-registry",
+    "description": "Link text pointing to the tracking-parameter registry on GitHub."
   },
 
   "optionsPageTitle": {

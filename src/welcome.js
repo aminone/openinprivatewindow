@@ -35,6 +35,19 @@ function applyLocale() {
   document.getElementById("step3-body").textContent = browser.i18n.getMessage("welcomeStep3Body");
 
   document.getElementById("welcome-note").textContent = browser.i18n.getMessage("welcomeNote");
+
+  document.getElementById("about-heading").textContent = browser.i18n.getMessage("aboutHeading");
+  document.getElementById("about-body").textContent = browser.i18n.getMessage("aboutBody");
+
+  document.getElementById("author-heading").textContent = browser.i18n.getMessage("authorHeading");
+  document.getElementById("author-body").textContent = browser.i18n.getMessage("authorBody");
+  document.getElementById("author-repo-link").textContent = browser.i18n.getMessage("authorRepoLink");
+  document.getElementById("author-email-link").textContent = "amin@mahmudian.ir";
+  document.getElementById("author-site-link").textContent = "mahmudian.ir";
+
+  document.getElementById("credits-heading").textContent = browser.i18n.getMessage("creditsHeading");
+  document.getElementById("credits-body").textContent = browser.i18n.getMessage("creditsBody");
+  document.getElementById("credits-link").textContent = browser.i18n.getMessage("creditsLink");
 }
 
 applyLocale();

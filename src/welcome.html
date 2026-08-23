@@ -105,6 +105,35 @@
       font-size: 0.85em;
       color: var(--feedback);
     }
+    .about {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--card-border);
+    }
+    .about h2 {
+      font-size: 16px;
+      margin: 0 0 8px 0;
+    }
+    .about p {
+      margin: 0 0 8px 0;
+      color: var(--text-muted);
+    }
+    .link-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .link-list li {
+      margin: 4px 0;
+    }
+    .link-list a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.95em;
+    }
+    .link-list a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -141,6 +170,29 @@
   </div>
 
   <div class="note" id="welcome-note"></div>
+
+  <section class="about">
+    <h2 id="about-heading"></h2>
+    <p id="about-body"></p>
+  </section>
+
+  <section class="about">
+    <h2 id="author-heading"></h2>
+    <p id="author-body"></p>
+    <ul class="link-list">
+      <li><a id="author-repo-link" href="https://github.com/aminone/openinprivatewindow" target="_blank" rel="noopener"></a></li>
+      <li><a id="author-email-link" href="mailto:amin@mahmudian.ir"></a></li>
+      <li><a id="author-site-link" href="https://mahmudian.ir" target="_blank" rel="noopener"></a></li>
+    </ul>
+  </section>
+
+  <section class="about">
+    <h2 id="credits-heading"></h2>
+    <p id="credits-body"></p>
+    <ul class="link-list">
+      <li><a id="credits-link" href="https://github.com/mpchadwick/tracking-query-params-registry" target="_blank" rel="noopener"></a></li>
+    </ul>
+  </section>
 
   <script src="welcome.js"></script>
 </body>
