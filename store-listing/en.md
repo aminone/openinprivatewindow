@@ -5,23 +5,25 @@ itself — just kept here for reference and easy copy-pasting when submitting.
 
 ## Summary (short, ~250 characters)
 
-Right-click any tab to reopen it in a new Private Browsing window — with an
-option to close the original tab and strip tracking parameters from the URL
-first.
+Right-click a tab, click the toolbar icon, or press Alt+Shift+P to reopen
+it in a new Private Browsing window — with options to close the original
+tab and strip tracking parameters from the URL first.
 
 ## Description
 
 Ever want to jump into Private Browsing without losing your place? Open in
-Private Window adds one simple option to your tab's right-click menu:
-"Open in Private Window." Click it, and your current page opens in a fresh
-private window — no copying URLs, no digging through menus.
+Private Window gives you three quick ways to do it: right-click any tab and
+choose "Open in Private Window," click the toolbar icon, or press
+**Alt+Shift+P**. Your current page opens in a fresh private window — no
+copying URLs, no digging through menus.
 
 **What it does:**
-- Right-click a tab → Open in Private Window → done.
+- Right-click a tab, click the toolbar button, or use the Alt+Shift+P
+  shortcut → your tab reopens in a new private window.
 - Optionally close the original tab once the private window opens.
-- Optionally strip common tracking parameters (like utm_source, fbclid,
-  gclid) from the URL before it opens, so you carry less baggage into
-  your private session.
+- Optionally strip tracking parameters (like utm_source, fbclid, gclid,
+  and ~100 others) from the URL before it opens, so you carry less baggage
+  into your private session.
 
 **What it doesn't do:**
 - It doesn't track you, collect any data, or talk to any server. Everything
