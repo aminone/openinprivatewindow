@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open in Private Window</title>
+  <meta name="description" content="A small Firefox extension that reopens your current tab in a new Private Browsing window.">
+  <link rel="icon" href="assets/icon-128.png">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --bg-hero: #f6f0fc;
+      --text: #1c1b22;
+      --text-muted: #4a4a4f;
+      --accent: #6200a4;
+      --accent-hover: #4a0080;
+      --accent-contrast: #fff;
+      --card-bg: #fafafa;
+      --card-border: #e0e0e6;
+      --code-bg: #eee;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1b22;
+        --bg-hero: #241b31;
+        --text: #f9f9fb;
+        --text-muted: #cbcbd1;
+        --accent: #c893ff;
+        --accent-hover: #dab3ff;
+        --accent-contrast: #1c1b22;
+        --card-bg: #2b2a33;
+        --card-border: #42414d;
+        --code-bg: #38373f;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .hero {
+      background: var(--bg-hero);
+      text-align: center;
+      padding: 64px 24px 56px;
+    }
+
+    .hero img {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin: 0 0 12px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-contrast);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      color: var(--accent);
+      margin-left: 12px;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 24px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .feature {
+      padding: 20px;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      background: var(--card-bg);
+    }
+
+    .feature h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.95em;
+    }
+
+    kbd {
+      background: var(--code-bg);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: monospace;
+      font-size: 0.9em;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-top: 48px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px 56px;
+      color: var(--text-muted);
+      font-size: 0.9em;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <img src="assets/icon-128.png" alt="Open in Private Window icon">
+    <h1>Open in Private Window</h1>
+    <p>A small Firefox extension that reopens your current tab in a new Private Browsing window.</p>
+    <!-- TODO: replace with the live AMO listing URL once the review is approved -->
+    <a class="btn btn-primary" href="https://addons.mozilla.org">Get it on AMO (pending review)</a>
+    <a class="btn btn-secondary" href="https://github.com/aminone/openinprivatewindow">View on GitHub</a>
+  </div>
+
+  <main>
+    <h2>Three ways to use it</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Right-click</h3>
+        <p>Right-click any tab and choose "Open in Private Window."</p>
+      </div>
+      <div class="feature">
+        <h3>Toolbar icon</h3>
+        <p>Click the icon in your toolbar for a one-click open.</p>
+      </div>
+      <div class="feature">
+        <h3>Keyboard shortcut</h3>
+        <p>Press <kbd>Alt+Shift+P</kbd> from anywhere.</p>
+      </div>
+    </div>
+
+    <h2>What it does</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Close the original tab</h3>
+        <p>Optional setting - off by default. Closes the tab you triggered it from once the private window opens.</p>
+      </div>
+      <div class="feature">
+        <h3>Strip tracking parameters</h3>
+        <p>Optional setting - off by default. Removes ~100 known tracking query parameters (utm_source, fbclid, gclid, and more) from the URL before it opens.</p>
+      </div>
+      <div class="feature">
+        <h3>Runs locally</h3>
+        <p>No network requests, no data collection. Settings are stored only on your device.</p>
+      </div>
+    </div>
+
+    <h2>Languages</h2>
+    <p>Available in English and Persian (فارسی), including right-to-left layout.</p>
+  </main>
+
+  <footer>
+    <p>
+      Built by Amin —
+      <a href="https://github.com/aminone/openinprivatewindow">GitHub</a> ·
+      <a href="mailto:amin@mahmudian.ir">amin@mahmudian.ir</a> ·
+      <a href="https://mahmudian.ir">mahmudian.ir</a>
+    </p>
+    <p>MIT License</p>
+  </footer>
+</body>
+</html>
