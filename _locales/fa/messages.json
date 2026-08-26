@@ -61,12 +61,47 @@
     "description": "Title of step 3 on the welcome page."
   },
   "welcomeStep3Body": {
-    "message": "روی هر تبی کلیک راست کن و «باز کردن در پنجره خصوصی» را انتخاب کن.",
+    "message": "روی هر تبی کلیک راست کن، آیکون توی نوار ابزار رو بزن، یا Alt+Shift+P رو فشار بده.",
     "description": "Body of step 3 on the welcome page."
   },
   "welcomeNote": {
     "message": "«باز کردن در پنجره خصوصی» یک پنجره خصوصی جدید با همان آدرس باز می‌کند، فایرفاکس از تب خصوصی داخل یک پنجره عادی پشتیبانی نمی‌کند. تب اصلی همچنان باز و دست‌نخورده باقی می‌ماند.",
     "description": "Closing note on the welcome page."
+  },
+
+  "aboutHeading": {
+    "message": "درباره این افزونه",
+    "description": "Heading of the 'about' section on the welcome page."
+  },
+  "aboutBody": {
+    "message": "«باز کردن در پنجره خصوصی» یک افزونه ساده و کوچک برای فایرفاکسه: آدرس تب فعلی رو توی یک پنجره Private Browsing جدید باز می‌کنه، با امکان اختیاری پاک‌سازی پارامترهای ردیابی و بستن تب اصلی. هیچ درخواست شبکه‌ای نمی‌زنه و هیچ داده‌ای جمع نمی‌کنه، همه تنظیمات فقط روی خود دستگاهت می‌مونه.",
+    "description": "Body of the 'about' section on the welcome page."
+  },
+
+  "authorHeading": {
+    "message": "سازنده",
+    "description": "Heading of the author section on the welcome page."
+  },
+  "authorBody": {
+    "message": "ساخته و نگه‌داری‌شده توسط امین.",
+    "description": "Body of the author section on the welcome page."
+  },
+  "authorRepoLink": {
+    "message": "ریپوی گیت‌هاب",
+    "description": "Link text pointing to the project's GitHub repository."
+  },
+
+  "creditsHeading": {
+    "message": "منابع مورد استفاده",
+    "description": "Heading of the credits section on the welcome page."
+  },
+  "creditsBody": {
+    "message": "لیست پارامترهای ردیابی از یک ریپوی متن‌باز گردآوری شده:",
+    "description": "Body of the credits section on the welcome page."
+  },
+  "creditsLink": {
+    "message": "mpchadwick/tracking-query-params-registry",
+    "description": "Link text pointing to the tracking-parameter registry on GitHub."
   },
 
   "optionsPageTitle": {
