@@ -4,13 +4,13 @@ name: Release to AMO
 # manual decision, unlike build.yml which runs on every push to main.
 # Lints, builds the same clean zip, submits it to addons.mozilla.org
 # for signing/review via web-ext sign, and attaches the zip to a
-# GitHub Release for the tag.
-#
+# GitHub Release
+
 # Requires two repo secrets, generated from your AMO API Credentials
 # page (https://addons.mozilla.org/developers/addon/api/key/):
 #   AMO_API_KEY    - looks like "user:12345:678"
 #   AMO_API_SECRET
-#
+
 # Note: this assumes the extension already exists as a listed add-on
 # on AMO (i.e. the first version, 1.0.0, was submitted manually
 # through the web UI). web-ext sign --channel=listed here submits
@@ -23,12 +23,28 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Tags trigger this workflow regardless of PR/merge status - pushing a
+      # tag from an unmerged branch would otherwise submit to AMO before any
+      # review or CI check has passed. Refuse to continue unless the tagged
+      # commit is actually reachable from main.
+      - name: Verify the tagged commit is on main
+        run: |
+          git fetch origin main
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+            echo "::error::Tag $GITHUB_REF_NAME points to a commit that is not on main (the PR likely hasn't been merged yet). Refusing to submit to AMO. Merge the PR first, then create and push the tag from main's HEAD."
+            exit 1
+          fi
+          echo "Tagged commit is on main - proceeding."
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
