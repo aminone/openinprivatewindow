@@ -1,10 +1,13 @@
 name: Build
 
-# Runs on every push to main - lints the extension and produces a fresh
-# .zip artifact, but never submits anything to AMO. That only happens in
-# release.yml, triggered by pushing a version tag.
+# Runs on every push to main, and on every PR targeting main - lints the
+# extension and produces a fresh .zip artifact, but never submits anything
+# to AMO. That only happens in release.yml, triggered by pushing a version
+# tag (and only once that tag's commit is verified to be on main).
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
 
 jobs:

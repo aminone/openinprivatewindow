@@ -99,13 +99,26 @@ Two GitHub Actions workflows live in `.github/workflows/`:
   README, LICENSE, `store-listing/`, `icons/icon.svg`, and `.github/`), and
   uploads it as a downloadable build artifact. Never touches AMO.
 - **`release.yml`** — runs only when a version tag matching `v*.*.*` is
-  pushed. Builds the same clean zip, submits it to AMO via `web-ext sign
-  --channel=listed`, and attaches the zip to a GitHub Release.
+  pushed. Verifies the tagged commit is actually on `main` (fails fast
+  otherwise — see below), builds the same clean zip, submits it to AMO via
+  `web-ext sign --channel=listed`, and attaches the zip to a GitHub Release.
 
 Submission only happens on an explicit tag push, not on every merge to
 `main` — a routine README fix shouldn't queue a new version for Mozilla's
-review. To ship a new version: bump `version` in `manifest.json`, merge to
-`main`, then `git tag vX.Y.Z && git push origin vX.Y.Z`.
+review. **Tag pushes are independent of PRs and CI status** — Git tags and
+branches are separate ref types, so pushing a tag fires `release.yml`
+immediately regardless of whether its branch's PR has been reviewed,
+merged, or even has failing checks. `release.yml` guards against this with
+a `git merge-base --is-ancestor` check right after checkout: if the tagged
+commit isn't reachable from `main`, the job fails immediately, before
+lint/build/sign ever run. That check is a safety net, not a substitute for
+doing it in the right order:
+
+To ship a new version:
+1. Bump `version` in `manifest.json` on your feature branch, open a PR.
+2. Get the PR reviewed, checks passing, and **merged into `main`**.
+3. `git checkout main && git pull`
+4. `git tag vX.Y.Z && git push origin vX.Y.Z` — tag `main`'s HEAD, not the feature branch.
 
 `release.yml` needs two repository secrets from your
 [AMO API Credentials page](https://addons.mozilla.org/developers/addon/api/key/):
